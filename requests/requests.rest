@@ -1,0 +1,27 @@
+GET http://localhost:3001/api/persons
+
+###
+
+GET http://localhost:3001/api/persons/9/
+
+###
+
+GET http://localhost:3001/api/persons/3/
+
+###
+
+GET http://localhost:3001/info
+
+###
+
+DELETE http://localhost:3001/api/persons/4/
+
+###
+
+POST http://localhost:3001/api/persons/
+content-type: application/json
+
+{
+  "name": "Arto Hellas 1",
+  "number": "120-887991332"
+}
