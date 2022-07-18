@@ -1,8 +1,14 @@
 const express = require('express');
 const { response } = require('express');
+const morgan = require('morgan');
 const app = express();
 
 app.use(express.json());
+
+morgan.token('req-data', (req) => {
+  return JSON.stringify(req.body);
+});
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :req-data'));
 
 const requestLogger = (request, response, next) => {
   console.log('Method: ', request.method);
@@ -52,7 +58,7 @@ app.get('/api/persons/:id', (request, response) => {
   const person = persons.find((person) => person.id === id);
 
   if (person) {
-    response.status(204).json(person);
+    response.json(person);
   } else {
     response.status(404).json({
       "error": "id doesn't exist"
